@@ -1,23 +1,34 @@
-\documentclass{book}
-\usepackage{geometry}
+\documentclass[12pt]{memoir}
 \usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{afterpage}
+\usepackage{placeins}
 \usepackage{xcolor}
 
-\geometry{paperwidth = 60cm, paperheight = 30cm, left = 0cm, right = 0cm, top = 0cm, bottom = 0cm}
+\setulmargins{2.5cm}{*}{1.618}
+\setlrmargins{2.5cm}{*}{1.618} % Golden ratio because golden ratio.
+\checkandfixthelayout
+
+% Custom bleedover command goes here. From https://tex.stackexchange.com/questions/23860/how-to-include-a-picture-over-two-pages-left-part-on-left-side-right-on-right.
+
+\include{customCommands/2sidePics}
+
+% Need another command for, I guess, a minipage overlay for blurbesque overlays.
+
 
 \begin{document}
-	\pagecolor{blue!50!black}
-	\color{blue!50!white}
+%	\pagecolor{blue!50!black}
+%	\color{blue!50!white} % Disabled while we decide on colours and layouts.
 	\title{ \Huge Quant$\bar{o}$ans}
 	\maketitle
+	
 	\newpage
-	\centering
-	\includegraphics[height=30cm]{images/koan1.jpg}
+	\twopagepicture{b}{p}{images/koan1.jpg}{}
+	
 	\newpage
-	\raggedleft
-	I guess some wanky words go here.
-	\includegraphics[height=30cm]{images/koan2.jpg}
+	\twopagepicture{t}{p}{images/koan2.jpg}{}
+	
 	\newpage
-	\raggedright
-	\includegraphics[height=30cm]{images/koan3.png}
+	\twopagepicture{b}{p}{images/koan3.png}{}
+	
 \end{document}
