@@ -6,7 +6,7 @@
 \renewcommand{\textfraction}{.01}
 
 \makeatletter
-\newcommand*{\twopagepicture}[4]{%
+\newcommand*{\twopagepicture}[3]{%
     \checkoddpage
     \ifoddpage
         \expandafter\@firstofone
@@ -15,49 +15,32 @@
     \fi
     {\afterpage{%
     \if #1t%
-        \if #2p%
-            \thispagestyle{empty}%
-            \afterpage{\thispagestyle{empty}}%
-        \fi
+        \thispagestyle{empty}%
+        \afterpage{\thispagestyle{empty}}%
     \fi
     \begin{figure*}[#1]
-        \if #2p%
-            \if #1t%
-                \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep\relax}%
-            \fi
+        \if #1t%
+            \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep+#2\relax}%
         \fi
         \makebox[\textwidth][l]{%
-        \if #2p\relax
-            \let\mywidth\paperwidth
+        \relax\let\mywidth\paperwidth
             \hskip-\dimexpr1in+\hoffset+\evensidemargin\relax
-        \else
-            \let\mywidth\linewidth
-        \fi
+
         \adjustbox{trim=0 0 {.5\width} 0,clip}{\includegraphics[width=2\mywidth]{#3}}}%
-        \if #2p%
-            \if #1b%
-                \vspace*{-\dimexpr\paperheight-\textheight-1in-\voffset-\topmargin-\headheight-\headsep\relax}%
-            \fi
+        \if #1b%
+            \vspace*{-\dimexpr\paperheight-\textheight-1in-\voffset-\topmargin-\headheight-\headsep+#2\relax}%
         \fi
     \end{figure*}%
     \begin{figure*}[#1]
-        \if #2p%
-            \if #1t%
-                \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep\relax}%
-            \fi
+        \if #1t%
+            \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep+#2\relax}%
         \fi
         \makebox[\textwidth][l]{%
-        \if #2p%
-            \let\mywidth\paperwidth
-            \hskip-\dimexpr1in+\hoffset+\oddsidemargin\relax
-        \else
-            \let\mywidth\linewidth
-        \fi
+        \let\mywidth\paperwidth
+        \hskip-\dimexpr1in+\hoffset+\oddsidemargin\relax
         \adjustbox{trim={.5\width} 0 0 0,clip}{\includegraphics[width=2\mywidth]{#3}}}%
-        \if #2p%
-            \if #1b%
-                \vspace*{-\dimexpr\paperheight-\textheight-1in-\voffset-\topmargin-\headheight-\headsep\relax}%
-            \fi
+    	\if #1b%
+            \vspace*{-\dimexpr\paperheight-\textheight-1in-\voffset-\topmargin-\headheight-\headsep+#2\relax}%
         \fi
     \end{figure*}%
     }}%

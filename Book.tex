@@ -13,7 +13,15 @@
 
 \include{customCommands/2sidePics}
 
-% Need another command for, I guess, a minipage overlay for blurbesque overlays.
+% Eventually want command something like
+% \twopagepicture{floatpos}{imageSize}{%imageCut}{verticaloffset}{image} where
+% floatpos is the float position toggle, top or bottom.
+% imageSize is the image size, duh.
+% imageCut is what I envision being what % of the image you want on the verso page.
+% verticaloffset is the vertical offset.
+% image is the image path.
+
+% Need another command for, I guess, a minipage for blurbesque overlays.
 
 
 \begin{document}
@@ -23,12 +31,12 @@
 	\maketitle
 	
 	\newpage
-	\twopagepicture{b}{p}{images/koan1.jpg}{}
+	\twopagepicture{t}{0px}{images/koan1.jpg}
 	
 	\newpage
-	\twopagepicture{t}{p}{images/koan2.jpg}{}
+	\twopagepicture{t}{0px}{images/koan2.jpg}
 	
 	\newpage
-	\twopagepicture{b}{p}{images/koan3.png}{}
+	\twopagepicture{t}{0px}{images/koan3.png}
 	
 \end{document}
