@@ -6,7 +6,8 @@
 \renewcommand{\textfraction}{.01}
 
 \makeatletter
-\newcommand*{\twopagepicture}[3]{%
+\newcommand*{\twopagepicture}[4]{%
+	\def\imagewidth{#4}
     \checkoddpage
     \ifoddpage
         \expandafter\@firstofone
@@ -22,27 +23,28 @@
         \if #1t%
             \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep+#2\relax}%
         \fi
-        \makebox[\textwidth][l]{%
-        \relax\let\mywidth\paperwidth
-            \hskip-\dimexpr1in+\hoffset+\evensidemargin\relax
-
-        \adjustbox{trim=0 0 {.5\width} 0,clip}{\includegraphics[width=2\mywidth]{#3}}}%
+        \makebox[\textwidth][r]{%
+        \relax\let\mywidth\imagewidth
+        \adjustbox{trim=0 0 {.5\width} 0,clip}{\includegraphics[width=\mywidth]{#3}}
+        	\hskip-\dimexpr1.035in-\hoffset-\oddsidemargin\relax}%
         \if #1b%
             \vspace*{-\dimexpr\paperheight-\textheight-1in-\voffset-\topmargin-\headheight-\headsep+#2\relax}%
         \fi
     \end{figure*}%
+	\clearpage
     \begin{figure*}[#1]
         \if #1t%
             \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep+#2\relax}%
         \fi
         \makebox[\textwidth][l]{%
-        \let\mywidth\paperwidth
-        \hskip-\dimexpr1in+\hoffset+\oddsidemargin\relax
-        \adjustbox{trim={.5\width} 0 0 0,clip}{\includegraphics[width=2\mywidth]{#3}}}%
+        \relax\let\mywidth\imagewidth
+        	\hskip-\dimexpr1in+\hoffset+\oddsidemargin\relax
+        \adjustbox{trim={.5\width} 0 0 0,clip}{\includegraphics[width=\mywidth]{#3}}}%
     	\if #1b%
             \vspace*{-\dimexpr\paperheight-\textheight-1in-\voffset-\topmargin-\headheight-\headsep+#2\relax}%
         \fi
-    \end{figure*}%
+    \end{figure*}
+	\clearpage%
     }}%
 }
 \makeatother
